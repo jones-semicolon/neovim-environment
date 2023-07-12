@@ -16,6 +16,10 @@ nvimtree.setup({
 	-- change folder arrow icons
 	sync_root_with_cwd = true,
 	auto_reload_on_write = true,
+	view = {
+		width = 25,
+		signcolumn = "no",
+	},
 	renderer = {
 		indent_markers = {
 			enable = true,
@@ -28,11 +32,11 @@ nvimtree.setup({
 				none = " ",
 			},
 		},
-		filesystem_watchers = {
-			enable = true,
-			debounce_delay = 50,
-			ignore_dirs = {},
-		},
+		-- filesystem_watchers = {
+		-- 	enable = true,
+		-- 	debounce_delay = 50,
+		-- 	ignore_dirs = {},
+		-- },
 		icons = {
 			glyphs = {
 				folder = {

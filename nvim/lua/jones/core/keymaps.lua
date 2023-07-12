@@ -83,3 +83,6 @@ keymap.set("v", "<A-j>", ":MoveBlock(1)<CR>", opts)
 keymap.set("v", "<A-k>", ":MoveBlock(-1)<CR>", opts)
 keymap.set("v", "<A-h>", ":MoveHBlock(-1)<CR>", opts)
 keymap.set("v", "<A-l>", ":MoveHBlock(1)<CR>", opts)
+
+-- alternate toggler
+keymap.set("n", "<leader><leader>", "<cmd>ToggleAlternate<CR>", config)

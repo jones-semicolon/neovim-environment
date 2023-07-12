@@ -1,7 +1,11 @@
 local fidget_status, fidget = pcall(require, "fidget")
 
 if not fidget_status then
-  return
+	return
 end
 
-fidget.setup()
+fidget.setup({
+	text = {
+		spinner = "dots",
+	},
+})
