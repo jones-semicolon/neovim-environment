@@ -35,6 +35,7 @@ keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", config) -- toggle file explo
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+keymap.set("n", "<leader>f", "<cmd>Telescope<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
@@ -50,39 +51,26 @@ keymap.set("n", "<leader>fr", "<cmd>Telescope registers<cr>")
 -- restart lsp server (not on youtube nvim video)
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
--- bufferline
-keymap.set("n", "<leader>,", "<Cmd>BufferLineCyclePrev<CR>", config)
-keymap.set("n", "<leader>.", "<Cmd>BufferLineCycleNext<CR>", config)
-keymap.set("n", "<leader><", "<Cmd>BufferLineMovePrev<CR>", config)
-keymap.set("n", "<leader>>", "<Cmd>BufferLineMoveNext<CR>", config)
-keymap.set("n", "<leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>", config)
-keymap.set("n", "<leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>", config)
-keymap.set("n", "<leader>3", "<Cmd>BufferLineGoToBuffer 3<CR>", config)
-keymap.set("n", "<leader>4", "<Cmd>BufferLineGoToBuffer 4<CR>", config)
-keymap.set("n", "<leader>5", "<Cmd>BufferLineGoToBuffer 5<CR>", config)
-keymap.set("n", "<leader>6", "<Cmd>BufferLineGoToBuffer 6<CR>", config)
-keymap.set("n", "<leader>7", "<Cmd>BufferLineGoToBuffer 7<CR>", config)
-keymap.set("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>", config)
-keymap.set("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>", config)
-keymap.set("n", "<leader>p", "<Cmd>BufferLineTogglePin<CR>", config)
-keymap.set("n", "<leader>c", "<Cmd>bdelete<CR>", config)
-keymap.set("n", "<leader>\\", "<Cmd>BufferLinePick<CR>", config)
-
 -- Move Text
-local opts = { noremap = true, silent = true }
 -- Normal-mode commands
-keymap.set("n", "<A-j>", ":MoveLine(1)<CR>", opts)
-keymap.set("n", "<A-k>", ":MoveLine(-1)<CR>", opts)
-keymap.set("n", "<A-h>", ":MoveHChar(-1)<CR>", opts)
-keymap.set("n", "<A-l>", ":MoveHChar(1)<CR>", opts)
-keymap.set("n", "<leader>wf", ":MoveWord(1)<CR>", opts)
-keymap.set("n", "<leader>wb", ":MoveWord(-1)<CR>", opts)
+keymap.set("n", "<A-j>", ":MoveLine(1)<CR>", config)
+keymap.set("n", "<A-k>", ":MoveLine(-1)<CR>", config)
+keymap.set("n", "<A-h>", ":MoveHChar(-1)<CR>", config)
+keymap.set("n", "<A-l>", ":MoveHChar(1)<CR>", config)
+keymap.set("n", "<leader>wf", ":MoveWord(1)<CR>", config)
+keymap.set("n", "<leader>wb", ":MoveWord(-1)<CR>", config)
 
 -- Visual-mode commands
-keymap.set("v", "<A-j>", ":MoveBlock(1)<CR>", opts)
-keymap.set("v", "<A-k>", ":MoveBlock(-1)<CR>", opts)
-keymap.set("v", "<A-h>", ":MoveHBlock(-1)<CR>", opts)
-keymap.set("v", "<A-l>", ":MoveHBlock(1)<CR>", opts)
+keymap.set("v", "<A-j>", ":MoveBlock(1)<CR>", config)
+keymap.set("v", "<A-k>", ":MoveBlock(-1)<CR>", config)
+keymap.set("v", "<A-h>", ":MoveHBlock(-1)<CR>", config)
+keymap.set("v", "<A-l>", ":MoveHBlock(1)<CR>", config)
 
 -- alternate toggler
 keymap.set("n", "<leader><leader>", "<cmd>ToggleAlternate<CR>", config)
+
+-- split window keymap
+keymap.set("n", "<C-k>", "<C-w>k", config)
+keymap.set("n", "<C-j>", "<C-w>j", config)
+keymap.set("n", "<C-l>", "<C-w>l", config)
+keymap.set("n", "<C-h>", "<C-w>h", config)

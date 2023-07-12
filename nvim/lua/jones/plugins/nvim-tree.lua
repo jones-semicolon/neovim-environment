@@ -32,11 +32,6 @@ nvimtree.setup({
 				none = " ",
 			},
 		},
-		-- filesystem_watchers = {
-		-- 	enable = true,
-		-- 	debounce_delay = 50,
-		-- 	ignore_dirs = {},
-		-- },
 		icons = {
 			glyphs = {
 				folder = {
@@ -46,9 +41,6 @@ nvimtree.setup({
 			},
 		},
 	},
-	-- disable window_picker for
-	-- explorer to work well with
-	-- window splits
 	actions = {
 		open_file = {
 			window_picker = {
@@ -62,12 +54,12 @@ nvimtree.setup({
 			restrict_above_cwd = false,
 		},
 	},
-	-- 	git = {
-	-- 		ignore = false,
-	-- 	},
+	git = {
+		ignore = false,
+	},
 })
 
-local function open_nvim_tree(data)
+--[[ local function open_nvim_tree(data)
 	-- buffer is a [No Name]
 	local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
@@ -87,7 +79,7 @@ local function open_nvim_tree(data)
 	require("nvim-tree.api").tree.open()
 end
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree }) ]]
 
 vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
 	pattern = "NvimTree*",

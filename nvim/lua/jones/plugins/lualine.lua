@@ -1,4 +1,3 @@
--- import lualine plugin safely
 local status, lualine = pcall(require, "lualine")
 if not status then
 	return
@@ -61,10 +60,7 @@ local config = {
 	options = {
 		component_separators = "",
 		section_separators = "",
-		theme = {
-			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.bg } },
-		},
+		theme = "tokyonight",
 		disabled_filetypes = {
 			statusline = {
 				"NvimTree",
@@ -92,7 +88,6 @@ local config = {
 		lualine_x = {},
 	},
 }
-
 -- Inserts a component in lualine_c at left section
 local function ins_left(component)
 	table.insert(config.sections.lualine_c, component)
@@ -103,6 +98,10 @@ local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
+local function inact_ins_right(component)
+	table.insert(config.inactive_sections.lualine_c, component)
+end
+
 ins_left({
 	function()
 		return "▊"
@@ -111,21 +110,25 @@ ins_left({
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
-ins_left({
+--[[ ins_left({
 	function()
 		return ""
 	end,
 	color = conditions.mode_color,
 	padding = { right = 1 },
-})
+}) ]]
 
 ins_left({
 	"filename",
 	cond = conditions.buffer_not_empty,
-	color = { gui = "bold" },
 	padding = { left = 0, right = 0 },
-	file_status = false,
-	newfile_status = false,
+	file_status = true,
+	newfile_status = true,
+	symbols = {
+		modified = "",
+		readonly = "",
+		newfile = "",
+	},
 })
 
 ins_left({
@@ -170,6 +173,24 @@ ins_right({
 	end,
 	color = conditions.mode_color,
 	padding = { left = 0 },
+})
+
+inact_ins_right({
+	function()
+		return "%="
+	end,
+})
+
+inact_ins_right({
+	"filetype",
+	cond = conditions.buffer_not_empty,
+	icon_only = true,
+	padding = { left = 0, right = 0 },
+})
+
+inact_ins_right({
+	"filename",
+	cond = conditions.buffer_not_empty,
 })
 
 lualine.setup(config)
