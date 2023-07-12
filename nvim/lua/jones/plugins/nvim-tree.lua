@@ -14,13 +14,30 @@ vim.g.loaded_netrwPlugin = 1
 -- configure nvim-tree
 nvimtree.setup({
 	-- change folder arrow icons
+	sync_root_with_cwd = true,
 	auto_reload_on_write = true,
 	renderer = {
+		indent_markers = {
+			enable = true,
+			inline_arrows = true,
+			icons = {
+				corner = "└",
+				edge = "│",
+				item = "│",
+				bottom = "─",
+				none = " ",
+			},
+		},
+		filesystem_watchers = {
+			enable = true,
+			debounce_delay = 50,
+			ignore_dirs = {},
+		},
 		icons = {
 			glyphs = {
 				folder = {
-					arrow_closed = "", -- arrow when folder is closed
-					arrow_open = "", -- arrow when folder is open
+					arrow_closed = "", -- arrow when folder is closed
+					arrow_open = "", -- arrow when folder is open
 				},
 			},
 		},
@@ -35,13 +52,16 @@ nvimtree.setup({
 			},
 			quit_on_open = true,
 		},
+		change_dir = {
+			enable = true,
+			global = true,
+			restrict_above_cwd = false,
+		},
 	},
 	-- 	git = {
 	-- 		ignore = false,
 	-- 	},
 })
-
--- open nvim-tree on setup
 
 local function open_nvim_tree(data)
 	-- buffer is a [No Name]

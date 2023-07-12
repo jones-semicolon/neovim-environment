@@ -105,6 +105,15 @@ return packer.startup(function(use)
 	use("rmagatti/alternate-toggler")
 	use({ "j-hui/fidget.nvim", tag = "legacy" })
 	use({ "axelvc/template-string.nvim" })
+	use("mg979/vim-visual-multi")
+	use({ "ggandor/leap.nvim", requires = "tpope/vim-repeat" })
+	use({ "ray-x/lsp_signature.nvim" })
+	use({ "akinsho/bufferline.nvim", tag = "*" })
+	use("fedepujol/move.nvim")
+	use("tpope/vim-obsession")
+	use("dhruvasagar/vim-prosession")
+	use("f-person/git-blame.nvim")
+	use("tpope/vim-fugitive")
 	use({
 		"akinsho/toggleterm.nvim",
 		tag = "*",
@@ -115,15 +124,6 @@ return packer.startup(function(use)
 			})
 		end,
 	})
-	use("mg979/vim-visual-multi")
-	use({ "ggandor/leap.nvim", requires = "tpope/vim-repeat" })
-	use({ "ray-x/lsp_signature.nvim" })
-	use({ "akinsho/bufferline.nvim", tag = "*" })
-	use("fedepujol/move.nvim")
-	use("tpope/vim-obsession")
-	use("dhruvasagar/vim-prosession")
-	use("f-person/git-blame.nvim")
-
 	if packer_bootstrap then
 		require("packer").sync()
 	end
