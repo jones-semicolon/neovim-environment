@@ -1,7 +1,8 @@
 -- import comment plugin safely
 local setup, comment = pcall(require, "Comment")
 if not setup then
-  return
+	print("Comment plugin not installed")
+	return
 end
 
 -- enable comment

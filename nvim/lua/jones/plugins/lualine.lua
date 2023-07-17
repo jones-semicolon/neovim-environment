@@ -55,6 +55,28 @@ local conditions = {
 		return { fg = mode_color[vim.fn.mode()] }
 	end,
 }
+local frames = {
+	"⠋",
+	"⠙",
+	"⠹",
+	"⠸",
+	"⠼",
+	"⠴",
+	"⠦",
+	"⠧",
+	"⠇",
+	"⠏",
+}
+local current_frame = 1
+
+local function infinite_progress_bar_component()
+	local frame = frames[current_frame]
+	current_frame = current_frame + 1
+	if current_frame > #frames then
+		current_frame = 1
+	end
+	return frame
+end
 
 local config = {
 	options = {
@@ -67,6 +89,7 @@ local config = {
 				"packer",
 			},
 		},
+		update_interval = 100,
 	},
 	sections = {
 		-- these are to remove the defaults
@@ -116,6 +139,7 @@ ins_left({
 	end,
 	color = conditions.mode_color,
 	padding = { right = 1 },
+	cond = function() end,
 }) ]]
 
 ins_left({
@@ -136,6 +160,16 @@ ins_left({
 		return "%="
 	end,
 })
+
+--[[ ins_left({
+	function()
+		local package = require("package-info").get_status()
+		if package == "" then
+			return ""
+		end
+		return infinite_progress_bar_component() .. package:gsub(".*([UIDF].*ing%s.*)%s.*", " %1")
+	end,
+}) ]]
 
 ins_left({
 	"diagnostics",
@@ -159,7 +193,8 @@ ins_right({
 	padding = { left = 0, right = 0 },
 	cond = conditions.hide_in_width,
 })
-ins_right({ "location" })
+ins_right({ "location", cond = conditions.buffer_not_empty })
+
 ins_right({
 	"filetype",
 	icons_enabled = true,
@@ -174,7 +209,7 @@ ins_right({
 	color = conditions.mode_color,
 	padding = { left = 0 },
 })
-
+--
 inact_ins_right({
 	function()
 		return "%="
@@ -191,6 +226,8 @@ inact_ins_right({
 inact_ins_right({
 	"filename",
 	cond = conditions.buffer_not_empty,
+	newfile_status = false,
+	file_status = false,
 })
 
 lualine.setup(config)

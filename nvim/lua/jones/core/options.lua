@@ -32,5 +32,3 @@ opt.swapfile = false
 opt.backup = false
 opt.modeline = false
 opt.showmode = false
-
--- vim.api.nvim_set_keymap("c", "<CR>", '<CR>:echo ""<CR>', { noremap = true, silent = true })

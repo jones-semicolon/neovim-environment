@@ -11,7 +11,7 @@ local ensure_packer = function()
 end
 local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
-vim.cmd([[ 
+vim.cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
@@ -91,17 +91,11 @@ return packer.startup(function(use)
 
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
-	use("rmagatti/alternate-toggler")
 	use({ "j-hui/fidget.nvim", tag = "legacy" })
 	use("mg979/vim-visual-multi")
-	use({ "ggandor/leap.nvim", requires = "tpope/vim-repeat" })
 	use({ "ray-x/lsp_signature.nvim" })
 	use({ "akinsho/bufferline.nvim", tag = "*" })
 	use("fedepujol/move.nvim")
-	use({
-		"folke/persistence.nvim",
-		event = "BufReadPre",
-	})
 	use("tpope/vim-fugitive")
 	use({
 		"akinsho/toggleterm.nvim",
@@ -114,6 +108,28 @@ return packer.startup(function(use)
 		end,
 	})
 	use({ "gcmt/wildfire.vim" })
+	use("NvChad/nvim-colorizer.lua")
+	use({ "RRethy/vim-illuminate" })
+	use("andweeb/presence.nvim")
+	use({ "phaazon/hop.nvim", branch = "v2" })
+	use({ "folke/todo-comments.nvim" })
+	use({ "nguyenvukhang/nvim-toggler" })
+	use({
+		"vuki656/package-info.nvim",
+		requires = "MunifTanjim/nui.nvim",
+	})
+	use({
+		"bennypowers/nvim-regexplainer",
+		config = function()
+			require("regexplainer").setup()
+		end,
+	})
+	use({ "olimorris/persisted.nvim", config = true })
+	use("folke/trouble.nvim")
+	use({
+		"gelguy/wilder.nvim",
+	})
+	use("anuvyklack/hydra.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()

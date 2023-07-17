@@ -11,14 +11,19 @@ buffline.setup({
 			{
 				filetype = "NvimTree",
 				text = function()
-					return vim.fn.getcwd():gsub(".*(%/.*)", "%1")
+					local file = vim.fn.getcwd():gsub(".*(%/.*)", "%1")
+					return file
 				end,
 				text_align = "center",
 				separator = true,
 			},
 		},
 		name_formatter = function(buf)
-			return buf.name:gsub("%..*$", "")
+			local file = buf.name:gsub("%..*$", "")
+			if file == "" then
+				return buf.name
+			end
+			return file
 		end,
 		show_buffer_icons = false,
 		tab_size = math.floor(vim.fn.winwidth(0) / 3 - 4),
@@ -42,3 +47,4 @@ keymap.set("n", "<leader>9", '<cmd>lua require("bufferline").go_to(9, true)<cr>'
 keymap.set("n", "<leader>,", "<Cmd>BufferLineCyclePrev<CR>", config)
 keymap.set("n", "<leader>.", "<Cmd>BufferLineCycleNext<CR>", config)
 keymap.set("n", "<leader>0", "<Cmd>BufferLinePick<CR>", config)
+keymap.set("n", "<leader>c", "<Cmd>bdelete! %<CR>", config)

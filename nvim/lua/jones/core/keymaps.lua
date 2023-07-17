@@ -13,6 +13,8 @@ keymap.set("n", "<ESC>", ":nohl<CR>", config)
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
+keymap.set("n", "<S-L>", "$")
+keymap.set("n", "<S-H>", "0")
 
 -- increment/decrement numbers
 keymap.set("n", "<C-Up>", "<C-a>") -- increment
