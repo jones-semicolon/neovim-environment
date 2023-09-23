@@ -18,7 +18,7 @@ nvimtree.setup({
 	},
 	view = {
 		width = 28,
-		signcolumn = "number",
+		-- signcolumn = "number",
 		centralize_selection = true,
 	},
 	renderer = {
