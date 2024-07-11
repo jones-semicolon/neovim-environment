@@ -27,6 +27,8 @@ mason_lspconfig.setup({
 		"cssls",
 		"tailwindcss",
 		"emmet_ls",
+		-- "jdtls",
+		"kotlin_language_server",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = false, -- not the same as ensure_installed
@@ -37,6 +39,7 @@ mason_null_ls.setup({
 	ensure_installed = {
 		"prettier", -- ts/js formatter
 		"eslint_d", -- ts/js linter
+		-- "ktlint",
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,

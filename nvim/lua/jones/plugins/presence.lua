@@ -4,4 +4,4 @@ if not presence_status then
 	print("Presence not installed")
 end
 
-presence.setup()
+presence.setup({})
