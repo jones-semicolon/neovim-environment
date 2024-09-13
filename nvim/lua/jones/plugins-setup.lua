@@ -66,15 +66,18 @@ return packer.startup(function(use)
   -- configuring lsp servers
   use("neovim/nvim-lspconfig") -- easily configure language servers
   use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-  use({
-    "nvimdev/lspsaga.nvim",
-    after = "nvim-lspconfig",
+  use ({
+      'nvimdev/lspsaga.nvim',
+      after = 'nvim-lspconfig',
+      config = function()
+          require('lspsaga').setup({})
+      end,
   })
   use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
   use("onsails/lspkind.nvim")              -- vs-code like icons for autocompletion
 
   -- formatting & linting
-  -- use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
+  use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
   use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
 
   use({
@@ -124,7 +127,11 @@ return packer.startup(function(use)
       require("regexplainer").setup()
     end,
   })
-  use({ "olimorris/persisted.nvim", config = true })
+  use({ "olimorris/persisted.nvim",
+    config = function()
+      require('persisted').setup()
+    end
+  })
   use("folke/trouble.nvim")
   use({
     "gelguy/wilder.nvim",
@@ -150,10 +157,11 @@ return packer.startup(function(use)
     end,
   })
   use({
-    "nvimtools/none-ls.nvim",
-    requires = {
-      "nvimtools/none-ls-extras.nvim",
-    },
+      "nvimtools/none-ls.nvim",
+      config = function()
+          require("null-ls").setup()
+      end,
+      requires = { "nvim-lua/plenary.nvim" },
   })
 
   if packer_bootstrap then

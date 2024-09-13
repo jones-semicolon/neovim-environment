@@ -1,9 +1,9 @@
--- -- import null-ls plugin safely
+-- import null-ls plugin safely
 -- local setup, null_ls = pcall(require, "null-ls")
 -- if not setup then
 -- 	return
 -- end
---
+
 -- -- for conciseness
 -- local formatting = null_ls.builtins.formatting -- to setup formatters
 -- local diagnostics = null_ls.builtins.diagnostics -- to setup linters
@@ -15,10 +15,11 @@ local async_formatting = function(bufnr)
     "textDocument/formatting",
     vim.lsp.util.make_formatting_params({}),
     function(err, res, ctx)
+      -- print(err)
       if err then
         local err_msg = type(err) == "string" and err or err.message
         -- you can modify the log message / level (or ignore it completely)
-        vim.notify("formatting: " .. err_msg, vim.log.levels.WARN)
+        vim.notify("formatting: " .. err_msg)
         return
       end
 
@@ -100,13 +101,11 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- import null-ls plugin safely
 local setup, null_ls = pcall(require, "null-ls")
 if not setup then
+  print("null ls not installed")
   return
 end
 
-local setup_none, none_ls = pcall(require, "none-ls")
-if not setup_none then
-  return
-end
+-- local none_ls = require("none-ls")
 
 -- import null-ls helpers
 local helpers = require("null-ls.helpers")
@@ -144,6 +143,7 @@ null_ls.register(shellcheck)
 null_ls.register(null_ls.builtins.formatting.prettier.with({
   disabled_filetypes = {
     "typescriptreact",
+    "lua",
   },
 }))
 null_ls.register(null_ls.builtins.formatting.ktlint.with({
@@ -152,7 +152,7 @@ null_ls.register(null_ls.builtins.formatting.ktlint.with({
 null_ls.register(null_ls.builtins.formatting.stylua.with({
   fileTypes = { "lua" },
 }))
-null_ls.register(none_ls.builtins.diagnostics.eslint_d.with({
+null_ls.register(null_ls.builtins.diagnostics.eslint_d.with({
   condition = function(utils)
     return utils.root_has_file(".eslintrc.js")
   end,

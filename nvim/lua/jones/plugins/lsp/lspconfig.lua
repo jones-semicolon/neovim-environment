@@ -91,6 +91,16 @@ lspconfig["cssls"].setup({
 	on_attach = on_attach,
 })
 
+lspconfig.eslint.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig.ts_ls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
 -- configure tailwindcss server
 lspconfig["tailwindcss"].setup({
 	capabilities = capabilities,
@@ -127,31 +137,31 @@ lspconfig["emmet_ls"].setup({
 })
 
 lspconfig["lua_ls"].setup({
-	cmd = {
-		"/data/data/com.termux/files/usr/share/lua-language-server/bin/lua-language-server",
-		"-E",
-		"/data/data/com.termux/files/usr/share/lua-language-server/bin/main.lua",
-	},
+	-- cmd = {
+	-- 	"/data/data/com.termux/files/usr/share/lua-language-server/bin/lua-language-server",
+	-- 	"-E",
+	-- 	"/data/data/com.termux/files/usr/share/lua-language-server/bin/main.lua",
+	-- },
 	capabilities = capabilities,
 	on_attach = on_attach,
-	settings = { -- custom settings for lua
-		Lua = {
-			-- make the language server recognize "vim" global
-			runtime = {
-				version = "LuaJIT",
-				path = vim.split(package.path, ";"),
-			},
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				-- make language server aware of runtime files
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
-		},
-	},
+	-- settings = { -- custom settings for lua
+	-- 	Lua = {
+	-- 		-- make the language server recognize "vim" global
+	-- 		runtime = {
+	-- 			version = "LuaJIT",
+	-- 			path = vim.split(package.path, ";"),
+	-- 		},
+	-- 		diagnostics = {
+	-- 			globals = { "vim" },
+	-- 		},
+	-- 		workspace = {
+	-- 			-- make language server aware of runtime files
+	-- 			library = {
+	-- 				[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+	-- 				[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+	-- 				[vim.fn.stdpath("config") .. "/lua"] = true,
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
 })

@@ -28,6 +28,6 @@ telescope.setup({
 	},
 })
 
-telescope.load_extension("fzf")
+-- telescope.load_extension("fzf")
 telescope.load_extension("package_info")
 telescope.load_extension("persisted")
