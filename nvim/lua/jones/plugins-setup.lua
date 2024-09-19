@@ -66,19 +66,19 @@ return packer.startup(function(use)
   -- configuring lsp servers
   use("neovim/nvim-lspconfig") -- easily configure language servers
   use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-  use ({
-      'nvimdev/lspsaga.nvim',
-      after = 'nvim-lspconfig',
-      config = function()
-          require('lspsaga').setup({})
-      end,
+  use({
+    "nvimdev/lspsaga.nvim",
+    after = "nvim-lspconfig",
+    config = function()
+      require("lspsaga").setup({})
+    end,
   })
-  use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
-  use("onsails/lspkind.nvim")              -- vs-code like icons for autocompletion
+  -- use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+  use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
   -- formatting & linting
   use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-  use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+  use("jayp0521/mason-null-ls.nvim")    -- bridges gap b/w mason & null-ls
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -94,11 +94,16 @@ return packer.startup(function(use)
 
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
-  use({ "j-hui/fidget.nvim" })
+  use({ "j-hui/fidget.nvim", tag = "v1.0.0" })
   use("mg979/vim-visual-multi")
   use({ "ray-x/lsp_signature.nvim" })
   use({ "akinsho/bufferline.nvim", tag = "*" })
-  use("fedepujol/move.nvim")
+  use({
+    "fedepujol/move.nvim",
+    config = function()
+      require("move").setup({})
+    end,
+  })
   use("tpope/vim-fugitive")
   use({
     "akinsho/toggleterm.nvim",
@@ -127,10 +132,11 @@ return packer.startup(function(use)
       require("regexplainer").setup()
     end,
   })
-  use({ "olimorris/persisted.nvim",
+  use({
+    "olimorris/persisted.nvim",
     config = function()
-      require('persisted').setup()
-    end
+      require("persisted").setup()
+    end,
   })
   use("folke/trouble.nvim")
   use({
@@ -138,16 +144,7 @@ return packer.startup(function(use)
   })
   use("anuvyklack/hydra.nvim")
   use("folke/neodev.nvim")
-  -- use({ "neoclide/coc.nvim", branch = "release" })
   use("udalov/kotlin-vim")
-  use({
-    "vigoux/notifier.nvim",
-    config = function()
-      require("notifier").setup({
-        -- You configuration here
-      })
-    end,
-  })
   use("simaxme/java.nvim")
   use("mistweaverco/screenshot.nvim")
   use({
@@ -157,11 +154,11 @@ return packer.startup(function(use)
     end,
   })
   use({
-      "nvimtools/none-ls.nvim",
-      config = function()
-          require("null-ls").setup()
-      end,
-      requires = { "nvim-lua/plenary.nvim" },
+    "nvimtools/none-ls.nvim",
+    config = function()
+      require("null-ls").setup()
+    end,
+    requires = { "nvim-lua/plenary.nvim" },
   })
 
   if packer_bootstrap then
